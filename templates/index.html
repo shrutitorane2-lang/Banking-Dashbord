@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banking Products Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <h1>Your products</h1>
+    <p class="summary" id="summary" aria-live="polite"></p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Filter products">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Product category"></div>
+      <div class="filters">
+        <label class="search">
+          <span class="sr-only">Search products</span>
+          <input type="search" id="search" placeholder="Search by name or feature" autocomplete="off">
+        </label>
+        <label class="select">
+          <span class="sr-only">Filter by status</span>
+          <select id="status">
+            <option value="">All statuses</option>
+            <option>Active</option>
+            <option>Pending</option>
+            <option>Available</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <p id="empty" class="empty" hidden>No products match. Clear the search or pick another category.</p>
+    <p id="error" class="empty" hidden>Products could not be loaded. Check that the server is running, then refresh.</p>
+  </main>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <form method="dialog" class="dlg-close"><button aria-label="Close">×</button></form>
+    <div id="detail-body"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
